@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="setting_language_entries">
+        <item>English</item>
+        <item>Tiếng Việt</item>
+    </string-array>
+
+    <string-array name="setting_language_value">
+        <item>en</item>
+        <item>vi</item>
+    </string-array>
+
+    <string-array name="setting_quality_entries">
+        <item>Original</item>
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
+    </string-array>
+
+    <string-array name="setting_quality_value">
+        <item>or</item>
+        <item>h</item>
+        <item>m</item>
+        <item>l</item>
+    </string-array>
+
+</resources>

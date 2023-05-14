@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search_hint">Tìm tài liệu</string>
+    <string name="number_of_pages">%1$d trang</string>
+    <string name="setting">Cài đặt</string>
+    <string name="setting_language">Ngôn ngữ</string>
+    <string name="setting_quality">Chất lượng file PDF</string>
+    <string name="sort_by">Sắp xếp theo</string>
+    <string name="cancel">Huỷ</string>
+    <string name="delete">Xoá</string>
+    <string name="are_you_sure">Bạn có chắc muốn xoá file không?</string>
+    <string name="add">Thêm</string>
+    <string name="edit">Chỉnh sửa</string>
+    <string name="reorder">Sắp xếp</string>
+    <string name="save">Lưu</string>
+    <string name="no_recent_documents">Không có tài liệu gần đây</string>
+    <string name="recent_documents">Tài liệu gần đây</string>
+    <string name="page_xxx">Trang XXX</string>
+    <string name="enter_file_name">Nhập tên file</string>
+    <string name="file_name">Tên file</string>
+    <string name="name">Tên</string>
+    <string name="date_created_default">Ngày khởi tạo (mặc định)</string>
+    <string name="page_count">Số trang</string>
+    <string name="ascending">Tăng dần</string>
+    <string name="descending">Giảm dần</string>
+    <string name="home">Trang chủ</string>
+    <string name="view">Xem</string>
+    <string name="share">Chia sẻ</string>
+    <string name="cannot_delete">Không thể xoá!</string>
+    <string name="creating">Đang xử lí</string>
+    <string name="creating_pdf_this_process_may_tatke_a_while">Đang tiến hành tạo file PDF. Việc này có thể sẽ mất một lúc...</string>
+    <string name="file_created">Tạo file thành công!</string>
+    <string name="file_name_cannot_be_blank">Tên file không thể để trống!</string>
+    <string name="failed_to_create_files">Lỗi khi tạo file</string>
+    <string name="display">Hiển thị</string>
+    <string name="pdf_setting">Cài đặt PDF</string>
+    <string name="general">Cài đặt chung</string>
+    <string name="show_page_number">Hiển thị số trang</string>
+    <string name="warning">Cảnh báo</string>
+    <string name="changes_not_saved">Các thay đổi chưa được lưu. Bạn có chắc muốn thoát không?</string>
+    <string name="keep_editing">Tiếp tục thay đổi</string>
+</resources>

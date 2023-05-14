@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name" translatable="false">Scan PDF</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="base_storage_path" translatable="false">ScanPDF/data/</string>
+    <string name="search_hint">Search Documents</string>
+    <string name="number_of_pages">%1$d page(s)</string>
+    <string name="base_staging_path" translatable="false">ScanPDF/staging/</string>
+    <string name="base_scantmp_path" translatable="false">ScanPDF/tmp/</string>
+    <string name="template_date_pattern" translatable="false">dd/MM/yyyy HH:mm</string>
+    <string name="setting">Setting</string>
+    <string name="setting_language">Language</string>
+    <string name="setting_quality">PDF Quality</string>
+    <string name="sort_by">Sort By</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="add">Add</string>
+    <string name="edit">Edit</string>
+    <string name="reorder">Reorder</string>
+    <string name="save">Save</string>
+    <string name="no_recent_documents">No recent documents</string>
+    <string name="recent_documents">Recent documents</string>
+    <string name="page_xxx">Page XXX</string>
+    <string name="enter_file_name">Enter file name</string>
+    <string name="file_name">File name</string>
+    <string name="name">Name</string>
+    <string name="date_created_default">Date created (default)</string>
+    <string name="page_count">Page count</string>
+    <string name="ascending">Ascending</string>
+    <string name="descending">Descending</string>
+    <string name="home">Home</string>
+    <string name="view">View</string>
+    <string name="share">Share</string>
+    <string name="cannot_delete">Cannot delete!</string>
+    <string name="creating">Creating</string>
+    <string name="creating_pdf_this_process_may_tatke_a_while">Creating PDF. This process may tatke a while...</string>
+    <string name="file_created">File created!</string>
+    <string name="file_name_cannot_be_blank">File name cannot be blank!</string>
+    <string name="failed_to_create_files">Failed to create files</string>
+    <string name="display">Display</string>
+    <string name="pdf_setting">PDF Setting</string>
+    <string name="general">General</string>
+    <string name="show_page_number">Show page number</string>
+    <string name="warning">Warning</string>
+    <string name="changes_not_saved">Changes were not saved. Are you sure you want to cancel?</string>
+    <string name="keep_editing">Keep editing</string>
+</resources>

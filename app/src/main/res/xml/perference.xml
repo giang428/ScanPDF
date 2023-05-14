@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory app:title="@string/general" />
+    <ListPreference
+        app:defaultValue="en"
+        app:entries="@array/setting_language_entries"
+        app:entryValues="@array/setting_language_value"
+        app:icon="@drawable/ic_language"
+        app:key="language"
+        app:title="@string/setting_language"
+        app:useSimpleSummaryProvider="true" />
+    <PreferenceCategory app:title="@string/pdf_setting" />
+    <ListPreference
+        app:defaultValue="m"
+        app:entries="@array/setting_quality_entries"
+        app:entryValues="@array/setting_quality_value"
+        app:icon="@drawable/ic_compress"
+        app:key="quality"
+        app:title="@string/setting_quality"
+        app:useSimpleSummaryProvider="true" />
+    <PreferenceCategory app:title="@string/display" />
+    <SwitchPreference
+        app:defaultValue="true"
+        app:key="showPageNum"
+        app:title="@string/show_page_number" />
+</PreferenceScreen>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sorting_dialog_scrollview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/sorting_dialog_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp">
+        <RadioGroup
+            android:id="@+id/sorting_dialog_radio_sorting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/sorting_dialog_radio_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/name" />
+
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/sorting_dialog_radio_date_created"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/date_created_default" />
+
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/sorting_dialog_page_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/page_count" />
+
+        </RadioGroup>
+
+<com.google.android.material.divider.MaterialDivider
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/black"/>
+
+        <RadioGroup
+            android:id="@+id/sorting_dialog_radio_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:paddingBottom="24dp">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/sorting_dialog_radio_ascending"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ascending" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/sorting_dialog_radio_descending"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/descending" />
+        </RadioGroup>
+
+
+
+
+    </LinearLayout>
+</ScrollView>
