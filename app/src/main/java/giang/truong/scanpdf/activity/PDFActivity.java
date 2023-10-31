@@ -5,12 +5,14 @@ import static android.os.Environment.DIRECTORY_DOCUMENTS;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,18 +54,35 @@ public class PDFActivity extends AppCompatActivity {
     private AlertDialog prg;
 
     private final ActivityResultLauncher<Intent> edited_img =
-            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),result -> {
-                if(result.getResultCode() == RESULT_OK && result.getData() != null){
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                     Uri i = result.getData().getParcelableExtra(ScanConstants.SCANNED_RESULT);
                     try {
                         int cur = b.viewpager.getCurrentItem();
-                        listImg.set(cur,i);
+                        listImg.set(cur, i);
                         viewPagerAdapter.notifyDataSetChanged();
                         b.viewpager.setAdapter(viewPagerAdapter);
                         b.viewpager.setCurrentItem(cur);
-                     } catch (Exception e){e.printStackTrace();}
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-    });
+            });
+
+    ActivityResultLauncher<PickVisualMediaRequest> pickMultipleMedia =
+            registerForActivityResult(new ActivityResultContracts.PickMultipleVisualMedia(MediaStore.getPickImagesMaxLimit()), uris -> {
+                // Callback is invoked after the user selects media items or closes the
+                // photo picker.
+                if (!uris.isEmpty()) {
+                    Log.d("PhotoPicker", "Number of items selected: " + uris.size());
+                    listImg.addAll(uris);
+                    viewPagerAdapter.notifyDataSetChanged();
+                    b.viewpager.setAdapter(viewPagerAdapter);
+                } else {
+                    Log.d("PhotoPicker", "No media selected");
+                }
+            });
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,17 +96,10 @@ public class PDFActivity extends AppCompatActivity {
         b.viewpager.setAdapter(viewPagerAdapter);
         b.viewpager.setPageTransformer(true, new DepthPageTransformer());
 
-        b.add.setOnClickListener(v -> {
-            TedImagePicker.with(this)
-                    .mediaType(MediaType.IMAGE)
-                    .buttonGravity(ButtonGravity.BOTTOM)
-                    .startMultiImage(uriList -> {
-                                listImg.addAll(uriList);
-                                viewPagerAdapter.notifyDataSetChanged();
-                                b.viewpager.setAdapter(viewPagerAdapter);
-                            }
-                    );
-        });
+        b.add.setOnClickListener(v -> pickMultipleMedia.launch(new PickVisualMediaRequest.Builder()
+                .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
+                .build())
+        );
 
         b.delete.setOnClickListener(v -> {
             int pos = b.viewpager.getCurrentItem();
@@ -102,14 +114,14 @@ public class PDFActivity extends AppCompatActivity {
         });
         b.edit.setOnClickListener(v -> {
             Intent i = new Intent(this, ScanActivity.class);
-            i.putExtra(ScanConstants.SELECTED_BITMAP,listImg.get(b.viewpager.getCurrentItem()));
+            i.putExtra(ScanConstants.SELECTED_BITMAP, listImg.get(b.viewpager.getCurrentItem()));
             edited_img.launch(i);
         });
         b.save.setOnClickListener(v -> showSaveDialog());
         b.reorder.setOnClickListener(v -> {
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.reorder_frame, new ReorderFragment());
-                transaction.commit();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.reorder_frame, new ReorderFragment());
+            transaction.commit();
         });
     }
 
@@ -176,15 +188,17 @@ public class PDFActivity extends AppCompatActivity {
             Log.e("IOEXCEPTIONS", ex.getMessage());
         }
     }
-    public ArrayList<Uri> getImgs(){
-        Log.i("SENT_IMGS",listImg.toString());
+
+    public ArrayList<Uri> getImgs() {
+        Log.i("SENT_IMGS", listImg.toString());
 
         return listImg;
     }
-    public void setImgs(ArrayList<Uri> imgs){
+
+    public void setImgs(ArrayList<Uri> imgs) {
         this.listImg.clear();
         listImg.addAll(imgs);
-        Log.i("REORDERED",listImg.toString());
+        Log.i("REORDERED", listImg.toString());
         viewPagerAdapter.notifyDataSetChanged();
         b.viewpager.setAdapter(viewPagerAdapter);
     }
