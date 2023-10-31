@@ -9,8 +9,13 @@ import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.PickVisualMediaRequest;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -29,8 +34,6 @@ import giang.truong.scanpdf.databinding.ActivityMainBinding;
 import giang.truong.scanpdf.fragments.HomeFragment;
 import giang.truong.scanpdf.fragments.SettingFragment;
 import giang.truong.scanpdf.utils.FileUtils;
-import gun0912.tedimagepicker.builder.TedImagePicker;
-import gun0912.tedimagepicker.builder.type.MediaType;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -45,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         View view = b.getRoot();
         setContentView(view);
 
-        Locale locale = new Locale((String) sharedPreferences.getString("language","en"));
+        Locale locale = new Locale(sharedPreferences.getString("language","en"));
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.setLocale(locale);
@@ -78,14 +81,26 @@ public class MainActivity extends AppCompatActivity {
             return loadFragment(fragment);
         });
 
+        ActivityResultLauncher<PickVisualMediaRequest> pickMultipleMedia =
+                registerForActivityResult(new ActivityResultContracts.PickMultipleVisualMedia(MediaStore.getPickImagesMaxLimit()), uris -> {
+                    // Callback is invoked after the user selects media items or closes the
+                    // photo picker.
+                    if (!uris.isEmpty()) {
+                        Log.d("PhotoPicker", "Number of items selected: " + uris.size());
+                        Intent i = new Intent(this,PDFActivity.class);
+                        i.putParcelableArrayListExtra("LIST_IMG",new ArrayList<>(uris));
+                        i.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        startActivity(i);
+                        finish();
+                    } else {
+                        Log.d("PhotoPicker", "No media selected");
+                    }
+                });
         b.fab.setOnClickListener(
-                v -> TedImagePicker.with(this).mediaType(MediaType.IMAGE)
-                        .startMultiImage(list -> {
-                            Intent i = new Intent(MainActivity.this, PDFActivity.class);
-                            i.putParcelableArrayListExtra("LIST_IMG", new ArrayList<>(list));
-                            list.forEach(System.out::println);
-                            startActivity(i);
-                        }));
+                v -> pickMultipleMedia.launch(new PickVisualMediaRequest.Builder()
+                        .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
+                        .build())
+        );
     }
 
     private boolean loadFragment(Fragment fragment) {
@@ -101,8 +116,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void allowPermissionForFile() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 2);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_MEDIA_IMAGES}, 2);
         } else {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE,}, 2);
         }
