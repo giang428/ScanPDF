@@ -76,7 +76,7 @@ class ReorderFragment : Fragment() {
             DragDropSwipeRecyclerView.ListOrientation.GRID_LIST_WITH_HORIZONTAL_SWIPING
         recyclerView.numOfColumnsPerRowInGridList = numberOfColumns
         recyclerView.itemLayoutId = R.layout.reorder_item
-        recyclerView.dividerDrawableId = null
+        recyclerView.dividerDrawableId = R.drawable.divider_grid
         recyclerView.adapter = adapter
         recyclerView.dragListener = onItemDragListener
 

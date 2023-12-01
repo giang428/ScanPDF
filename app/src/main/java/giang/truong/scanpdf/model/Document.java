@@ -21,6 +21,7 @@ public class Document {
     @NonNull
     private int pages;
 
+
     public int get_id() {
         return _id;
     }
@@ -63,4 +64,6 @@ public class Document {
     public void setPages(int pages) {
         this.pages = pages;
     }
+
+
 }

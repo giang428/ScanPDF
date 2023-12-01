@@ -44,4 +44,15 @@
     <string name="warning">Warning</string>
     <string name="changes_not_saved">Changes were not saved. Are you sure you want to cancel?</string>
     <string name="keep_editing">Keep editing</string>
+    <string name="create_new">Create new</string>
+    <string name="scan_ocr">Scan OCR</string>
+    <string name="scan_pdf">Create new PDF</string>
+    <string name="create_new_document">Create new</string>
+    <string name="home_sort">Sort</string>
+    <string name="home_filter">Filter</string>
+    <string name="setting_about">About</string>
+    <string name="scan_result">Scan result</string>
+    <string name="scan_ocr_str">Scan OCR</string>
+    <string name="copy">Copy</string>
+    <string name="doc_edit">Edit</string>Scan result/string>
 </resources>

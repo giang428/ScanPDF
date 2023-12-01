@@ -40,9 +40,8 @@ public class SettingFragment extends PreferenceFragmentCompat {
                 Configuration config = new Configuration();
                 config.setLocale(locale);
                 requireContext().getResources().updateConfiguration(config, requireContext().getResources().getDisplayMetrics());
-                Intent refresh = new Intent(requireContext(), MainActivity.class);
+                requireActivity().setResult(12345);
                 requireActivity().finish();
-                startActivity(refresh);
                 return true;
             });
 

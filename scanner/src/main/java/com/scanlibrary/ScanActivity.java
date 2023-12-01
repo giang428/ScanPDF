@@ -41,7 +41,7 @@ public class ScanActivity extends Activity implements IScanner, ComponentCallbac
 
         setContentView(R.layout.scan_layout);
         Log.i("URI SENT",getIntent().getParcelableExtra(ScanConstants.SELECTED_BITMAP).toString());
-        onBitmapSelect((Uri)getIntent().getParcelableExtra(ScanConstants.SELECTED_BITMAP));
+        onBitmapSelect(getIntent().getParcelableExtra(ScanConstants.SELECTED_BITMAP));
         Utils.setLightNavigationBar( findViewById(android.R.id.content), this );
     }
 
