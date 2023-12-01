@@ -73,20 +73,20 @@ public class ScanFragment extends Fragment {
     }
 
     private void init() {
-        sourceImageView = (ImageView) view.findViewById(R.id.sourceImageView);
+        sourceImageView = view.findViewById(R.id.sourceImageView);
 
-        rotateLeft = (Button) view.findViewById(R.id.rotateLeft);
+        rotateLeft = view.findViewById(R.id.rotateLeft);
         rotateLeft.setOnClickListener(new RotateLeftClickListener());
 
-        scanButton = (Button) view.findViewById(R.id.scanButton);
+        scanButton = view.findViewById(R.id.scanButton);
         scanButton.setOnClickListener(new ScanButtonClickListener());
 
-        rotateRight = (Button) view.findViewById(R.id.rotateRight);
+        rotateRight = view.findViewById(R.id.rotateRight);
         rotateRight.setOnClickListener(new RotateRightClickListener());
 
-        polygonView = (PolygonView) view.findViewById(R.id.polygonView);
+        polygonView = view.findViewById(R.id.polygonView);
 
-        sourceFrame = (FrameLayout) view.findViewById(R.id.sourceFrame);
+        sourceFrame = view.findViewById(R.id.sourceFrame);
         sourceFrame.post(new Runnable() {
             @Override
             public void run() {
@@ -197,14 +197,14 @@ public class ScanFragment extends Fragment {
         @Override
         public void onClick(View v) {
             Bitmap bitmapImg  = original;
-            Log.i("Bitmap size",String.valueOf(bitmapImg.getHeight()) + " " + String.valueOf(bitmapImg.getWidth()));
+            Log.i("Bitmap size", bitmapImg.getHeight() + " " + bitmapImg.getWidth());
             //rotate left
             Matrix matrix = new Matrix();
             matrix.postRotate(-90);
 
             Bitmap rotatedBitmap = Bitmap.createBitmap(bitmapImg, 0, 0, bitmapImg.getWidth(), bitmapImg.getHeight(), matrix, true);
             setBitmap(rotatedBitmap);
-            Log.i("Bitmap size",String.valueOf(rotatedBitmap.getHeight()) + " " + String.valueOf(rotatedBitmap.getWidth()));
+            Log.i("Bitmap size", rotatedBitmap.getHeight() + " " + rotatedBitmap.getWidth());
 
 
             original.recycle();

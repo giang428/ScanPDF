@@ -57,22 +57,22 @@ public class ResultFragment extends Fragment {
     }
 
     private void init() {
-        scannedImageView = (ImageView) view.findViewById(R.id.scannedImage);
-        originalButton = (Button) view.findViewById(R.id.original);
+        scannedImageView = view.findViewById(R.id.scannedImage);
+        originalButton = view.findViewById(R.id.original);
         originalButton.setOnClickListener(new OriginalButtonClickListener());
-        MagicColorButton = (Button) view.findViewById(R.id.magicColor);
+        MagicColorButton = view.findViewById(R.id.magicColor);
         MagicColorButton.setOnClickListener(new MagicColorButtonClickListener());
-        grayModeButton = (Button) view.findViewById(R.id.grayMode);
+        grayModeButton = view.findViewById(R.id.grayMode);
         grayModeButton.setOnClickListener(new GrayButtonClickListener());
-        bwButton = (Button) view.findViewById(R.id.BWMode);
+        bwButton = view.findViewById(R.id.BWMode);
         bwButton.setOnClickListener(new BWButtonClickListener());
         Bitmap bitmap = getBitmap();
         setScannedImage(bitmap);
-        doneButton = (Button) view.findViewById(R.id.doneButton);
+        doneButton = view.findViewById(R.id.doneButton);
         doneButton.setOnClickListener(new DoneButtonClickListener());
-        addButton = (Button) view.findViewById(R.id.addButton);
+        addButton = view.findViewById(R.id.addButton);
         addButton.setOnClickListener(new AddButtonClickListener());
-        pageNumber =  (TextView) view.findViewById(R.id.pageNumber);
+        pageNumber = view.findViewById(R.id.pageNumber);
 
         final File sd = Environment.getExternalStorageDirectory();
         final String stagingDirPath = view.getContext().getString( R.string.base_staging_path );

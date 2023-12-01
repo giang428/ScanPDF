@@ -39,4 +39,15 @@
     <string name="warning">Cảnh báo</string>
     <string name="changes_not_saved">Các thay đổi chưa được lưu. Bạn có chắc muốn thoát không?</string>
     <string name="keep_editing">Tiếp tục thay đổi</string>
+    <string name="create_new">Tạo tài liệu mới</string>
+    <string name="scan_ocr">Quét OCR</string>
+    <string name="scan_pdf">Tạo file PDF mới</string>
+    <string name="create_new_document">Tạo tài liệu mới</string>
+    <string name="home_sort">Sắp xếp</string>
+    <string name="home_filter">Lọc</string>
+    <string name="setting_about">Giới thiệu</string>
+    <string name="scan_result">Kết quả</string>
+    <string name="scan_ocr_str">Quét OCR</string>
+    <string name="copy">Sao chép</string>
+    <string name="doc_edit">Sửa</string>
 </resources>

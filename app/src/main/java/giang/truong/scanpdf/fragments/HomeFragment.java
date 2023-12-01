@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
@@ -21,11 +22,14 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import giang.truong.scanpdf.R;
 import giang.truong.scanpdf.adapter.DocumentItemAdapter;
 import giang.truong.scanpdf.adapter.IOnDocumentClick;
 import giang.truong.scanpdf.databinding.FragmentHomeBinding;
+import giang.truong.scanpdf.databinding.SaveDialogBinding;
 import giang.truong.scanpdf.databinding.SortDialogBinding;
 import giang.truong.scanpdf.model.Document;
 import giang.truong.scanpdf.utils.FileUtils;
@@ -169,9 +173,34 @@ public class HomeFragment extends Fragment implements IOnDocumentClick {
                         })
                         .show();
                 return true;
-            } else {
+            } else if(item.getItemId() == R.id.doc_share){
                 String path = listDocument.getValue().get(pos).getPath();
                 FileUtils.shareFile(requireContext(), path);
+                return true;
+            } else {
+                Document current = listDocument.getValue().get(pos);
+
+                MaterialAlertDialogBuilder saveDialog = new MaterialAlertDialogBuilder(requireContext());
+                SaveDialogBinding sb = SaveDialogBinding.inflate(getLayoutInflater());
+
+                saveDialog.setView(sb.getRoot());
+                AlertDialog dg = saveDialog.show();
+
+                sb.filename.getEditText().setText(current.getName());
+                if (sb.filename.requestFocus())
+                    requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
+                sb.saveBtn.setOnClickListener(vi -> {
+                    try {
+                        String fileName = sb.filename.getEditText().getText().toString();
+                        current.setName(fileName);
+                       viewModel.updateDocument(current);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    dg.dismiss();
+                });
+                sb.cancelBtn.setOnClickListener(v -> dg.dismiss());
                 return true;
             }
         });

@@ -4,6 +4,7 @@ import static android.os.Environment.DIRECTORY_DOCUMENTS;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 
@@ -34,7 +35,24 @@ public class FileUtils {
         return fileList;
 
     }
+    public static File newImage() throws IOException {
+        File directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "ScanPDF");
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
 
+        String fileName = "SCAN_" + System.currentTimeMillis() + ".png";
+        return new File(directory,fileName);
+    }
+    public static Uri newImageUri(Context c){
+        File f = null;
+        try {
+            f = FileUtils.newImage();
+        } catch (IOException e){
+
+        }
+        return FileProvider.getUriForFile(c,"giang.truong.scanpdf.provider",f);
+    }
     public static void mkdir(Context c, String dirPath ){
 
         final File sd = c.getExternalFilesDir(DIRECTORY_DOCUMENTS);
